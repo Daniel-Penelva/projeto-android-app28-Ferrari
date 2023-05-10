@@ -17,10 +17,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void irSegundaTela(View view){
 
-        Toast.makeText(this, "Clicou na tela", Toast.LENGTH_LONG).show();
-
         //Recebe como parâmetro a tela em que está e a tela em que quer ir
         Intent intent = new Intent(MainActivity.this, SegundaTela.class);
+
+        // Passando parâmetro entre as telas
+        intent.putExtra("modeloFerrari", "Ferrari 456");
+
         startActivity(intent);
     }
 }
