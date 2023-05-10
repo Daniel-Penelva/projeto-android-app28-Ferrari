@@ -8,14 +8,11 @@ import android.widget.Toast;
 
 public class SegundaTela extends AppCompatActivity {
 
-    private TextView textoFerrari;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_segunda_tela);
-
-        textoFerrari = findViewById(R.id.idFerrari);
 
         // Pacotes de váriaveis que vem junto com Intent
         Bundle bundle = getIntent().getExtras();
@@ -26,10 +23,10 @@ public class SegundaTela extends AppCompatActivity {
             String texto = bundle.getString("modeloFerrari");
 
             if(texto != null){
-                textoFerrari.setText(texto);
+                Toast.makeText(this, "Modelo da Ferrari: " + texto, Toast.LENGTH_LONG).show();
             }
 
-            //Toast.makeText(this, "Modelo da Ferrari: " + texto, Toast.LENGTH_LONG).show();
+
         }
 
 

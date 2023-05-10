@@ -4,27 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:onClick="irSegundaTela"
-    android:background="@color/corBackground"
-    tools:context=".MainActivity">
+    android:background="@color/corBackground">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageIcone"
         android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:scaleType="centerInside"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/car1" />
 
-    <ListView
-        android:id="@+id/minhaLista"
+    <TextView
+        android:id="@+id/textIcone"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="4dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:drawableLeft="@drawable/logop"
+        android:gravity="center"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageIcone"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

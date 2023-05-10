@@ -26,3 +26,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
+
+/* No Androidmanifest.xml vamos modificar o tema para NoActionBar, faremos a seguinte modificação:
+* android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+*
+* */
