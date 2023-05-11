@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -19,7 +20,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    String[] listaTitulos = {"Ferrari 456", "Ferrari 308 GTB", "Ferrari F40", "Ferrari F50", "Ferrari F355",
+    String[] listaCarros = {"Ferrari 456", "Ferrari 308 GTB", "Ferrari F40", "Ferrari F50", "Ferrari F355",
             "Ferrari 550", "Ferrari Enzo", "Ferrari F430", "Ferrari FF", "Ferrari LaFerrari"};
 
     int[] listaIcones = {R.drawable.car1, R.drawable.car2, R.drawable.car3, R.drawable.car4, R.drawable.car5,
@@ -40,6 +41,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Criando minha lista
+        ListView minhaLista = findViewById(R.id.minhaLista);
+
+        //Criando o objeto adapter para acessar a minha_celula
+        final MeuAdapter meuAdapter;
+        meuAdapter = new MeuAdapter(getApplicationContext(), R.layout.minha_celula);
+
+        // Criando um objeto para percorrer os valores da listaIcones e listaDescrição e adicionar no meu adapter
+        int i = 0;
+        for(String carros:listaCarros){
+            CarrosFerrari carrosFerrari;
+            carrosFerrari = new CarrosFerrari(listaIcones[i],carros,listaDescricao[i]);
+            meuAdapter.add(carrosFerrari);
+            i++;
+        }
+
+        // atribuindo na minha lista o meu adapter
+        minhaLista.setAdapter(meuAdapter);
 
     }
 
