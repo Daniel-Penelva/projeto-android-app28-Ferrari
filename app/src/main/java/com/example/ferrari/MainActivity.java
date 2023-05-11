@@ -1,10 +1,15 @@
 package com.example.ferrari;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -83,12 +88,90 @@ class CarrosFerrari{
     }
 }
 
+/* Essa classe por padrão inclui o:
+    -> construtor MeuAdapter
+    -> add()
+    -> getCount()
+    -> getView()
+
+OBS. É possível criar esses métodos com o auxílio da IDE através do generate.
+OBS. No caso, vai ser implementado apenas a Classe getView - para mostrar o conteúdo na tela.
+*/
+class MeuAdapter extends ArrayAdapter{
 
 
+    public MeuAdapter(@NonNull Context context, int resource) {
+        super(context, resource);
+    }
 
+    @Override
+    public void add(@Nullable Object object) {
+        super.add(object);
+    }
 
+    @Override
+    public int getCount() {
+        return super.getCount();
+    }
+
+    @NonNull
+    @Override
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
+
+        // Criando atributo da minha View
+        View minhaView;
+        minhaView = convertView;
+
+        // Criando um atributo para a Classe ViewCarro
+        ViewCarros viewCarros;
+
+        if(convertView == null){
+
+            //Inflar os itens na tela
+            LayoutInflater inflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            minhaView = inflater.inflate(R.layout.minha_celula, parent, false);
+
+            // Instanciando os componentes do layout minha_celula e colocando na minha view
+            viewCarros = new ViewCarros();
+            viewCarros.imageIcone = minhaView.findViewById(R.id.imageIcone);
+            viewCarros.titulo = minhaView.findViewById(R.id.textTitulo);
+
+            minhaView.setTag(viewCarros);
+
+        }else{
+
+            viewCarros = (ViewCarros) minhaView.getTag();
+        }
+
+        // Criando um atributo para a Classe CarrosFerrari
+        CarrosFerrari carrosFerrari;
+
+        // Define a quantidade de itens
+        carrosFerrari = (CarrosFerrari) this.getItem(position);
+
+        viewCarros.imageIcone.setImageResource(carrosFerrari.getIcone());
+        viewCarros.titulo.setText(carrosFerrari.getTitulo());
+
+        return minhaView;
+    }
+}
 
 
 /* No Androidmanifest.xml vamos modificar o tema para NoActionBar, faremos a seguinte modificação:
 * android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+*
+* ------------------------------------------------------------------------------------------------
+*
+* Entendendo o processo de criação entre a ListView e o Adapter
+*
+* O ListView quando é criado, pergunta ao Adapter qual é a quantidade de itens que ele terá, e recebe a resposta
+* atráves do método getCount().
+*
+* Quando recebe a quantidade ele começa a se preparar para exibir os itens, vendo a quantidade que caberá na tela,
+* vamos imaginar que sejam apenas 5 itens qua possam ser exibidos, nisso o Android vai inflar esses 5 itens e vai
+* devolver para o ListView através do método getView(), além disso o Android acaba inflando mais duas views, para
+* reaproveitarmos.
+*
+* Está view que é criada para reaproveitamento é a view que recebemos como parâmetro no método getView(), chamamos
+* ela de convertView.
 * */

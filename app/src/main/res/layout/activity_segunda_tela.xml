@@ -8,7 +8,7 @@
     tools:context=".SegundaTela">
 
     <TextView
-        android:id="@+id/textIcone2"
+        android:id="@+id/textTitulo2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@android:color/black"
@@ -31,11 +31,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textIcone2"
+        app:layout_constraintTop_toBottomOf="@+id/textTitulo2"
         app:srcCompat="@drawable/car1" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textDescricao"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
