@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         //Criando minha lista
         ListView minhaLista = findViewById(R.id.minhaLista);
 
-        //Criando o objeto adapter para acessar a minha_celula
+        //Criando o objeto adapter para acessar a minha_celula e mostrar os itens
         final MeuAdapter meuAdapter;
         meuAdapter = new MeuAdapter(getApplicationContext(), R.layout.minha_celula);
 
@@ -58,8 +58,30 @@ public class MainActivity extends AppCompatActivity {
             i++;
         }
 
-        // atribuindo na minha lista o meu adapter
+        // Atribuindo meu adapter na minha ListView
         minhaLista.setAdapter(meuAdapter);
+
+        // Criando minha ação de click
+        minhaLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                CarrosFerrari carrosFerrari;
+
+                // Corresponde a posição dos itens, no caso, são 10 itens ou valores
+                carrosFerrari = (CarrosFerrari) meuAdapter.getItem(position);
+
+                // Usar o Intent para carregar as informações no layout da segundaTela
+                Intent intent = new Intent(getApplicationContext(), SegundaTela.class);
+
+                //Vamos usar o método putExtra para criar a chave e adicionar o valor das listas
+                intent.putExtra("titulo", carrosFerrari.getTitulo());
+                intent.putExtra("descricao", carrosFerrari.getDescricao());
+                intent.putExtra("icone", carrosFerrari.getIcone());
+
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -116,6 +138,7 @@ class CarrosFerrari{
 
 OBS. É possível criar esses métodos com o auxílio da IDE através do generate.
 OBS. No caso, vai ser implementado apenas a Classe getView - para mostrar o conteúdo na tela.
+Essa é a função do Adapter mostrar o conteúdo na tela de cada item no conjunto de resultados.
 */
 class MeuAdapter extends ArrayAdapter{
 
@@ -181,6 +204,16 @@ class MeuAdapter extends ArrayAdapter{
 * android:theme="@style/Theme.AppCompat.Light.NoActionBar"
 *
 * ------------------------------------------------------------------------------------------------
+*
+* Bom Saber: Um objeto Intent carrega informações que o sistema Android usa para determinar o componente a iniciar
+* (como o nome exato do componente ou categoria do componente que deve receber o intent), além de informações que o
+* componente receptor usa para realizar a ação adequadamente (como a ação a tomar e os dados a usar).
+*
+* Bom Saber: O que é um Adapter? No Android, os adapters servem de ponte entre a AdapterView (por exemplo ListView,
+* GridView ) e os dados necessários para essa visualização. O Adapter também é responsável por fazer uma Exibição
+* para cada item no conjunto de resultados. Esta classe tem a função de personalizar a apresentação de dados em lista.
+* Existem alguns exemplos de Adapters como ArrayAdapter (apresentação de dados em Lista com origem de um array),
+* SimpleCursorAdapter (os dados vêm de um banco de dados), entre outros.
 *
 * Entendendo o processo de criação entre a ListView e o Adapter
 *
