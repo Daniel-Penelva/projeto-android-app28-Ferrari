@@ -87,10 +87,10 @@ public class MainActivity extends AppCompatActivity {
 
 }
 
-// Classe que declara os componentes que utilizaremos
+// Classe que declara os componentes que utilizaremos do layout minha_celula
 class ViewCarros{
     ImageView imageIcone;
-    TextView titulo, descricao;
+    TextView titulo;
 }
 
 class CarrosFerrari{
@@ -179,10 +179,12 @@ class MeuAdapter extends ArrayAdapter{
             viewCarros.imageIcone = minhaView.findViewById(R.id.imageIcone);
             viewCarros.titulo = minhaView.findViewById(R.id.textTitulo);
 
+            //Armazena o objeto viewCarros nesta minhaView como uma tag
             minhaView.setTag(viewCarros);
 
         }else{
 
+            // Esse objeto pode ser depois recuperado
             viewCarros = (ViewCarros) minhaView.getTag();
         }
 
